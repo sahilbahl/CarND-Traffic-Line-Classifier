@@ -6,11 +6,11 @@ Overview
 In this project, I used deep neural networks and convolutional neural networks to classify traffic signs. I trained and validated a model so it can classify traffic sign images using the [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). After the model was trained, I then tried out my model on images of German traffic signs that I find on the web.
 
 
-#**Traffic Sign Recognition**
+**Traffic Sign Recognition**
 
-###Data Set Summary & Exploration
+**Data Set Summary & Exploration**
 
-####1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+**1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.**
 
 The code for this step is contained in the second code cell of the IPython notebook.  
 
@@ -23,32 +23,31 @@ signs data set:
 * The number of unique classes/labels in the data set is 43
 
 
-####2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
+**2. Include an exploratory visualization of the dataset and identify where the code is in your code file.**
 
 The code for this step is contained in the third code cell of the IPython notebook.  
 
 Here is an exploratory visualization of the data set. It is a bar chart showing number of images per class as well as one image per class .
 
 
-###Design and Test a Model Architecture
+**Design and Test a Model Architecture**
 
-####1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
+**1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.**
 
 The code for this step is contained in the fourth code cell of the IPython notebook.
 
 As a first step, I decided to convert the images to grayscale because color images will not add any extra information required for classification .
 After that I normalize the image keeping the values between -1 to 1 so as to have 0 mean.
 
-####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
+**2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)**
 
 The training , test and validation data was already present .
 I did not add any augmented data .
 
-####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+**3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.**
 
 My final model consisted of the following layers:
 
-|--------------------------------------------------------------------------------|
 | Layer         		|     Description	        					                         |
 |:-----------------:|:----------------------------------------------------------:|
 | Input         		| 32x32x3 RGB image   							                         |
@@ -70,10 +69,9 @@ My final model consisted of the following layers:
 | RELU              |                                                            |
 | DROPOUT           |                                                            |
 | Fully connected		| Input:84 , Output:43          									           |
-|-----------------: |:----------------------------------------------------------:|
 
 
-####4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+**4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.**
 
 The code for training the model is located in the eigth cell of the ipython notebook.
 
@@ -82,7 +80,7 @@ For batch size I found that smaller batch size gave better results . I choose ba
 Number or epochs - 30
 I have used constant learning rate - 0.001
 
-####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+**5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.**
 
 The code for calculating the accuracy of the model is located in the ninth cell of the Ipython notebook.
 
@@ -95,20 +93,19 @@ Then I added dropout layer to avoid over fitting and was able to improve perform
 Finally I tried to add inception module but was facing some implementation issues due to problem with concat method.
 So I thought of adding single inception layers in the network instead which improved validation accuracy .
 
-###Test a Model on New Images
+**Test a Model on New Images**
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+**1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.**
 
 I tested on 11 images that I downloaded from the web .  Out of these 1 image of wild animal crossing was different from that in Germany . I used a sign with a kangaroo on it for experimental purpose . To my disappointment the network could not guess it correctly .The network needs to be improved .As far as other images , I have used images with different color combinations as well as night lighting which may make it difficult to classify.
 
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+**2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).**
 
 The code for making predictions on my final model is located in the tenth cell of the Ipython notebook.
 
 Here are the results of the prediction:
 
-|:---------------------|:---------------------------------|:-------|
 | Image			           |     Prediction	        					| Result |
 |:-------------------- |:--------------------------------:|:------:|
 | Keep Right           | Keep Right                       |Correct |
@@ -122,12 +119,11 @@ Here are the results of the prediction:
 | 20 Km/h	             | 20 Km/h   							          |Correct |
 | Ahead only           | Ahead Only                       |Correct |                
 | No entry             | No entry                         |Correct |
-|:---------------------|:---------------------------------|--------|
 
 
 The model was able to correctly guess 8 of the 11 traffic signs, which gives an accuracy of 74%. This is lesser than  the accuracy on the test set .
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+**3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)**
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
