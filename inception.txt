@@ -1,0 +1,42 @@
+nception layer 
+    #Input 32*32*3 Output 32*32*36
+    W_conv1_1x1_1 = createWeight([1,1,3,32],'W_conv1_1x1_1')
+    b_conv1_1x1_1 = createWeight([32],'b_conv1_1x1_1')
+     
+        
+    #follows input
+    #Input 32*32*3 Output 32*32*36
+    W_conv1_1x1_2 = createWeight([1,1,3,16],'W_conv1_1x1_2')
+    b_conv1_1x1_2 = createWeight([16],'b_conv1_1x1_2')
+     
+    #follows input
+    #Input 32*32*3 Output 32*32*36
+    W_conv1_1x1_3 = createWeight([1,1,3,16],'W_conv1_1x1_3')
+    b_conv1_1x1_3 = createWeight([16],'b_conv1_1x1_3')
+     
+    #follows 1x1_2
+    #Input 32*32*36 Output 30*30*16
+    W_conv1_3x3 = createWeight([3,3,16,32],'W_conv1_3x3')
+    b_conv1_3x3 = createWeight([32],'b_conv1_3x3')
+     
+    #follows 1x1_3
+    #Input 32*32*36 Output 28*28*16
+    W_conv1_5x5 = createWeight([5,5,16,32],'W_conv1_5x5')
+    b_conv1_5x5 = createBias([32],'b_conv1_5x5')
+     
+    #follows max pooling
+    #Input 32*32*3 Output 32*32*32
+    W_conv1_1x1_4= createWeight([1,1,3,32],'W_conv1_1x1_4')
+    b_conv1_1x1_4= createWeight([32],'b_conv1_1x1_4')
+         
+    conv1_1x1_1 = conv2d_s1(x,W_conv1_1x1_1)+b_conv1_1x1_1
+    conv1_1x1_2 = tf.nn.relu(conv2d_s1(x,W_conv1_1x1_2)+b_conv1_1x1_2)
+    conv1_1x1_3 = tf.nn.relu(conv2d_s1(x,W_conv1_1x1_3)+b_conv1_1x1_3)
+    conv1_3x3 = conv2d_s1(conv1_1x1_2,W_conv1_3x3)+b_conv1_3x3
+    conv1_5x5 = conv2d_s1(conv1_1x1_3,W_conv1_5x5) + b_conv1_3x3
+    maxpool1 = max_pool_2x2_s1(x)
+    conv1_1x1_4 = conv2d_s1(maxpool1,W_conv1_1x1_4)+b_conv1_1x1_4
+         
+    #concatenate all the feature maps and hit them with a relu
+    inception1 = tf.nn.relu(tf.concat(3,[conv1_1x1_1,conv1_3x3,conv1_5x5,conv1_1x1_4]))
+    
